@@ -212,12 +212,20 @@ Run Multiple Vehicles
 
     - Modify ``~/autoware_carla_launch/src/autoware_carla_launch/launch/carla_bridge.launch.xml`` (About line 7)
 
+        - Remove the following line:
         .. code-block:: xml
             :class: highlight
 
-            -<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename $(env VEHICLE_NAME)" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
-            +<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v1' --position 87.687683,145.671295,0.300000,0.000000,90.000053,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
-            +<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v2' --position 92.109985,227.220001,0.300000,0.000000,-90.000298,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+            <executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename $(env VEHICLE_NAME)" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+            
+        - Add the following lines:
+        .. code-block:: xml
+            :class: highlight
+
+            <executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v1' --position 87.687683,145.671295,0.300000,0.000000,90.000053,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+            <executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v2' --position 92.109985,227.220001,0.300000,0.000000,-90.000298,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+
+
 
 - Spawn two vehicles.
 
