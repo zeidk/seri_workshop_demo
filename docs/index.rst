@@ -18,6 +18,7 @@ Link to the SERI workshop: `https://www.nist.gov/programs-projects/nist-automate
 
    getting_started/updates.rst
    getting_started/installation.rst
+   getting_started/run.rst
 
 
  

@@ -4,7 +4,7 @@
 Installation Instructions
 ===========================
 
-.. admonition:: Requirements
+.. admonition:: Prerequisites
   :class: attention
 
     - The instructions provided on this page are for Ubuntu 20.04 and ROS 2 Galactic. 
