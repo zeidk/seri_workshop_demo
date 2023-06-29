@@ -191,8 +191,24 @@ Run Multiple Vehicles
 
 - Since running two Autoware will cause port conflict, we need to do some modifications.
 
-    - Modify ``~/autoware_carla/autoware/src/universe/autoware.universe/launch/tier4_planning_launch/launch/scenario_planning/lane_driving/behavior_planning/behavior_planning.launch.py`` (About line 177)
+    - Modify the file :file:`behavior_planning.launch.py`
+        .. code-block:: text
+                :class: no-copybutton
 
+                ~
+                └── autoware_carla
+                    └── autoware
+                        └── src
+                            └── universe
+                                └── autoware.universe
+                                    └── launch
+                                        └── tier4_planning_launch
+                                            └── launch
+                                                └── scenario_planning
+                                                    └── lane_driving
+                                                        └── behavior_planning
+                                                            └── behavior_planning.launch.py
+            
         .. code-block:: python
             :class: highlight
 
