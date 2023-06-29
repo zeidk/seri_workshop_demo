@@ -18,6 +18,7 @@ Carla Simulator
 - Carla 0.9.13 is used in the demo.
 
     - Get one of the two following pre-built binaries from `here <https://github.com/carla-simulator/carla/releases/tag/0.9.13/>`_.
+
     - Click on one of the following links to download the archive:
         - `CARLA_0.9.13.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13.tar.gz>`_
         - `CARLA_0.9.13_RSS.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13_RSS.tar.gz>`_
@@ -28,8 +29,8 @@ Carla Simulator
             :class: highlight
 
             mkdir -p ~/dev/carla_simulator/
-            # Download CARLA_0.9.13.tar.gz to ~/dev/carla_simulator/
-            # Unzip Carla_0.9.13.tar.gz to ~/dev/carla_simulator/
+            # Download carla to ~/dev/carla_simulator/
+            # Unzip carla to ~/dev/carla_simulator/
             cd ~/dev/carla_simulator/<carla folder> && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
 
         **Note:** Options to :file:`CarlaUE4.sh` can be found `here <https://carla.readthedocs.io/en/latest/adv_rendering_options/>`_.
@@ -88,12 +89,12 @@ Install Autoware
         cd ~/dev/autoware
         colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 
-    **Note:** `colcon build` builds all packages in the workspace. This can take a long time (approximately 20-30 min).
+    **Note:** ``colcon build`` builds all packages in the workspace. This can take a long time (approximately 20-30 min).
 
     .. admonition:: Requirements
         :class: attention
 
-        `~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with `colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release`.
+        :file:`~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with ``colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release``.
         
 
 
