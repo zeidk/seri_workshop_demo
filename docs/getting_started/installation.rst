@@ -1,28 +1,35 @@
 .. _INSTALLATION:
 
 
-Installing ARIAC
+Installation Instructions
 ===========================
 
 .. admonition:: Requirements
   :class: attention
 
-    ARIAC 2023 is built for ROS2 Galactic running on Ubuntu 20.04 (Focal Fossa). 
+    The instructions provided on this page require ROS 2 Galactic. 
 
     - See the `ROS2 Galactic installation instructions <https://docs.ros.org/en/galactic/Installation.html>`_ for more information.
 
 
-Cloning the ARIAC Repository
+Carla Simulator
 ----------------------------
 
-- Create a new ROS2 workspace:
+- Carla 0.9.13 is required.
 
-    .. code-block:: bash
-        :class: highlight
+    - Get one of the two following pre-built binaries from `here <https://github.com/carla-simulator/carla/releases/tag/0.9.13/>`_.
+        
+        - `CARLA_0.9.13.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13.tar.gz>`_
+        - `CARLA_0.9.13_RSS.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13_RSS.tar.gz>`_
+    - Extract the archive to a directory of your choice. We will use the following directory in this example: :file:`~/carla_simulator/`
+    - Check the the simulator can run:
 
-        source /opt/ros/galactic/setup.bash
-        mkdir -p ~/ariac_ws/src
-        cd ~/ariac_ws
+        .. code-block:: bash
+            :class: highlight
+
+            cd ~/carla_simulator/ && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
+
+        **Note:** The simulator will take a few minutes to load the first time you run it.
 
 
 - Clone the ARIAC repository:
