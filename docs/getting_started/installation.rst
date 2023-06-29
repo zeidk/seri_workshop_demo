@@ -25,7 +25,7 @@ Installation Instructions
             ├── autoware_carla_launch
             └── autoware_carla
                 ├── autoware
-                └── carla_simulator
+                └── <carla folder>
             
 
         **Note:** The :file:`nist_seri_ws` and :file:`autoware_carla` directories can be named anything.
@@ -225,7 +225,39 @@ Run Multiple Vehicles
 
 - Spawn two vehicles.
 
-    - Run Carla: ``./CarlaUE4.sh -quality-level=Epic -prefernvidia -RenderOffScreen``
-    - Run the bridge: ``cd ~/autoware_carla_launch && source env.sh && ros2 launch autoware_carla_launch carla_bridge.launch.xml``
-    - Run Autoware for the first vehicle: ``cd ~/autoware_carla_launch && source env.sh && ROS_DOMAIN_ID=1 VEHICLE_NAME="v1" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml``
-    - Run Autoware for the first vehicle: ``cd ~/autoware_carla_launch && source env.sh && ROS_DOMAIN_ID=2 VEHICLE_NAME="v2" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml``
+    - Run Carla: 
+        .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~/autoware_carla/<carla folder>
+            ./CarlaUE4.sh -quality-level=Epic -prefernvidia -RenderOffScreen
+    
+    
+    - Run the bridge: 
+
+         .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~/autoware_carla_launch
+            source env.sh
+            ros2 launch autoware_carla_launch carla_bridge.launch.xml
+       
+    
+    - Run Autoware for the first vehicle: 
+
+         .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~/autoware_carla_launch
+            source env.sh
+            ROS_DOMAIN_ID=1 VEHICLE_NAME="v1" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml    
+    
+    - Run Autoware for the first vehicle: 
+    
+         .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~/autoware_carla_launch
+            source env.sh
+            ROS_DOMAIN_ID=2 VEHICLE_NAME="v2" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml    
+    
