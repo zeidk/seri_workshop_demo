@@ -15,55 +15,31 @@ Installation Instructions
 Carla Simulator
 ----------------------------
 
-- Carla 0.9.13 is required.
+- Carla 0.9.13 is used in the demo.
 
     - Get one of the two following pre-built binaries from `here <https://github.com/carla-simulator/carla/releases/tag/0.9.13/>`_.
-        
+    - Click on one of the following links to download the archive:
         - `CARLA_0.9.13.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13.tar.gz>`_
         - `CARLA_0.9.13_RSS.tar.gz <https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/CARLA_0.9.13_RSS.tar.gz>`_
-    - Extract the archive to a directory of your choice. We will use the following directory in this example: :file:`~/carla_simulator/`
+    - Extract the archive to a directory of your choice. We will use the following directory in this example: :file:`~/dev/carla_simulator/`
     - Check the the simulator can run:
 
         .. code-block:: bash
             :class: highlight
 
-            cd ~/carla_simulator/ && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
+            mkdir -p ~/dev/carla_simulator/
+            cd ~/dev/carla_simulator/ && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
 
-        **Note:** The simulator will take a few minutes to load the first time you run it.
-
-
-- Clone the ARIAC repository:
-
-    .. code-block:: bash
-        :class: highlight
-        
-        git clone https://github.com/usnistgov/ARIAC.git src/ariac
-
-    
-    **Note:** Always use the ``ariac2023`` branch.
+        **Note:** Options to :file:`CarlaUE4.sh` can be found `here <https://carla.readthedocs.io/en/latest/adv_rendering_options/>`_.
 
 
-- Install the dependencies:
 
-    .. code-block:: bash
-        :class: highlight
-
-        sudo apt install python3-rosdep
-        sudo apt install openjdk-17-jdk
-        sudo rosdep init
-        rosdep update --include-eol-distros
-        rosdep install --from-paths src -y --ignore-src
-
-    .. note::
-
-        - :file:`openjdk-17-jdk` is required to install the Java 17 JDK for the human challenge.
-        - If you are using a virtual machine, you may need to install the :file:`python3-vcstool` package.
-
-
-Building the ARIAC Package
+Autoware
 --------------------------
 
-- Build the ARIAC package:
+- Autoware (version Galactic) is used in the demo.
+
+    - The following instructions are taken from the `Autoware Source Installation <https://autowarefoundation.github.io/autoware-documentation/galactic/installation/autoware/source-installation/>`_.
 
     .. code-block:: bash
         :class: highlight
