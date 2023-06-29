@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'ARIAC'
+project = 'NIST SERI Demo'
 copyright = 'NIST'
-author = 'Pavel'
+author = 'Zeid'
 
 release = '1.0'
 version = '0.1.0'

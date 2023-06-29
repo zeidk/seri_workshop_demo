@@ -9,8 +9,24 @@ Installation Instructions
 
     The instructions provided on this page are for Ubuntu 20.04 and ROS 2 Galactic. 
 
+    - See the `Ubuntu 20.04 installation instructions <https://phoenixnap.com/kb/install-ubuntu-20-04>`_ for more information.
+
     - See the `ROS2 Galactic installation instructions <https://docs.ros.org/en/galactic/Installation.html>`_ for more information.
 
+    At the end of this tutorial, you will have the following directory structure:
+
+    .. code-block:: text
+        :class: no-copybutton
+
+        ~
+        └── dev
+            ├── autoware
+            ├── carla_simulator
+            ├── autoware_carla_control
+            └── autoware_carla_launch
+        
+
+        4 directories
 
 Carla Simulator
 ----------------------------
