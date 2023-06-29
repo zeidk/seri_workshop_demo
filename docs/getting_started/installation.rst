@@ -25,11 +25,7 @@ Installation Instructions
             ├── autoware_carla_launch
             └── autoware_carla
                 ├── autoware
-                └── <carla folder>
-            
-
-        **Note:** The :file:`nist_seri_ws` and :file:`autoware_carla` directories can be named anything.
-    
+                └── <carla folder>    
     
 
 Nist Demo Package
@@ -226,6 +222,7 @@ Run Multiple Vehicles
 - Spawn two vehicles.
 
     - Run Carla: 
+
         .. code-block:: bash
             :class: no-copybutton
 
@@ -253,7 +250,7 @@ Run Multiple Vehicles
             ROS_DOMAIN_ID=1 VEHICLE_NAME="v1" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml    
     
     - Run Autoware for the first vehicle: 
-    
+
          .. code-block:: bash
             :class: no-copybutton
 
