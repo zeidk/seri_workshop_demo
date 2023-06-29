@@ -21,8 +21,8 @@ Installation Instructions
             ├── nist_seri_ws
             |   └── src
             |       └──seri_workshop_demo
-            |          ├── nist_demo
-            |          └── autoware_carla_launch
+            |          └── nist_demo
+            ├── autoware_carla_launch
             └── autoware_carla
                 ├── autoware
                 └── carla_simulator
@@ -34,9 +34,6 @@ Installation Instructions
 
 Nist Demo Package
 ----------------------------
-
-The Nist Demo Package
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
     - Create the :file:`nist_seri_ws` directory:
 
@@ -60,7 +57,8 @@ The Nist Demo Package
             :class: no-copybutton
 
             cd ~/nist_seri_ws
-            colcon build --symlink-install --packages-select seri_workshop_demo
+            colcon build --symlink-install
+
 
 
 Carla Simulator
@@ -151,8 +149,83 @@ Install Autoware
     .. admonition:: Requirements
         :class: attention
 
-        :file:`~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with ``colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release``.
+        :file:`~/autoware_carla/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with ``colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release``.
         
 - Test Autoware:
 
     - Follow the instructions found `here <https://autowarefoundation.github.io/autoware.auto/AutowareAuto/installation.html#test-your-installation>`_ to test the planning simulation in Autoware.
+
+
+Carla Autoware Bridge
+----------------------------
+
+- Clone the :file:`autoware_carla_launch` package:
+
+        .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~
+            git clone https://github.com/evshary/autoware_carla_launch.git -b galactic
+
+- Build the :file:`autoware_carla_launch` package:
+
+        .. code-block:: bash
+            :class: no-copybutton
+
+            cd ~/autoware_carla_launch
+            make clean
+            source env.sh
+            make prepare
+            source ~/autoware_carla/autoware/install/setup.bash
+            make build
+
+- Test the bridge:
+
+        .. code-block:: bash
+            :class: no-copybutton
+
+            ./CarlaUE4.sh -quality-level=Epic -prefernvidia
+            cd ~/autoware_carla_launch
+            source env.sh
+            ros2 launch autoware_carla_launch autoware_carla.launch.xml
+
+
+Run Multiple Vehicles
+^^^^^^^^^^^^^^^^^^^^^^
+
+- Since running two Autoware will cause port conflict, we need to do some modifications.
+
+    - Modify ``~/autoware_carla/autoware/src/universe/autoware.universe/launch/tier4_planning_launch/launch/scenario_planning/lane_driving/behavior_planning/behavior_planning.launch.py`` (About line 177)
+
+        .. code-block:: python
+            :class: highlight
+
+            import random # Add this line
+            ...
+                {
+                    "bt_tree_config_path": [
+                        FindPackageShare("behavior_path_planner"),
+                        "/config/behavior_path_planner_tree.xml",
+                    ],
+                    "groot_zmq_publisher_port": random.randint(2000, 4000), # Add this line
+                    "groot_zmq_server_port": random.randint(2000, 4000), # Add this line
+                    "planning_hz": 10.0,
+                },
+
+- Able to spawn a second vehicle into Carla.
+
+    - Modify ``~/autoware_carla_launch/src/autoware_carla_launch/launch/carla_bridge.launch.xml`` (About line 7)
+
+        .. code-block:: xml
+            :class: highlight
+
+            -<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename $(env VEHICLE_NAME)" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+            +<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v1' --position 87.687683,145.671295,0.300000,0.000000,90.000053,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+            +<executable cmd="poetry run python3 main.py --host $(env CARLA_SIMULATOR_IP) --rolename 'v2' --position 92.109985,227.220001,0.300000,0.000000,-90.000298,0.000000" cwd="$(env AUTOWARE_CARLA_ROOT)/external/zenoh_carla_bridge/carla_agent" output="screen" />
+
+- Spawn two vehicles.
+
+    - Run Carla: ``./CarlaUE4.sh -quality-level=Epic -prefernvidia -RenderOffScreen``
+    - Run the bridge: ``cd ~/autoware_carla_launch && source env.sh && ros2 launch autoware_carla_launch carla_bridge.launch.xml``
+    - Run Autoware for the first vehicle: ``cd ~/autoware_carla_launch && source env.sh && ROS_DOMAIN_ID=1 VEHICLE_NAME="v1" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml``
+    - Run Autoware for the first vehicle: ``cd ~/autoware_carla_launch && source env.sh && ROS_DOMAIN_ID=2 VEHICLE_NAME="v2" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml``
