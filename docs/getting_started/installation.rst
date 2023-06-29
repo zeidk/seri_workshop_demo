@@ -283,7 +283,7 @@ Run Multiple Vehicles
             source env.sh
             ROS_DOMAIN_ID=1 VEHICLE_NAME="v1" ros2 launch autoware_carla_launch autoware_zenoh.launch.xml    
     
-    - Run Autoware for the first vehicle: 
+    - Run Autoware for the second vehicle: 
 
          .. code-block:: bash
             :class: no-copybutton
