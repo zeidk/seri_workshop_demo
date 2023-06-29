@@ -7,7 +7,7 @@ Installation Instructions
 .. admonition:: Requirements
   :class: attention
 
-    The instructions provided on this page require ROS 2 Galactic. 
+    The instructions provided on this page are for Ubuntu 20.04 and ROS 2 Galactic. 
 
     - See the `ROS2 Galactic installation instructions <https://docs.ros.org/en/galactic/Installation.html>`_ for more information.
 
@@ -28,7 +28,9 @@ Carla Simulator
             :class: highlight
 
             mkdir -p ~/dev/carla_simulator/
-            cd ~/dev/carla_simulator/ && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
+            # Download CARLA_0.9.13.tar.gz to ~/dev/carla_simulator/
+            # Unzip Carla_0.9.13.tar.gz to ~/dev/carla_simulator/
+            cd ~/dev/carla_simulator/<carla folder> && ./CarlaUE4.sh -quality-level=Epic -prefernvidia
 
         **Note:** Options to :file:`CarlaUE4.sh` can be found `here <https://carla.readthedocs.io/en/latest/adv_rendering_options/>`_.
 
@@ -91,7 +93,7 @@ Install Autoware
     .. admonition:: Requirements
         :class: attention
 
-        `~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to the :file:`src` folder, the workspace must be rebuilt with `colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release`.
+        `~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with `colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release`.
         
 
 
