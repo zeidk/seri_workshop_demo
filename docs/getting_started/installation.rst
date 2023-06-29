@@ -37,24 +37,64 @@ Carla Simulator
 Autoware
 --------------------------
 
-- Autoware (version Galactic) is used in the demo.
+Autoware (version Galactic) is used in the demo. The following instructions are taken from the `Autoware Source Installation <https://autowarefoundation.github.io/autoware-documentation/galactic/installation/autoware/source-installation/>`_.
 
-    - The following instructions are taken from the `Autoware Source Installation <https://autowarefoundation.github.io/autoware-documentation/galactic/installation/autoware/source-installation/>`_.
-
-    .. code-block:: bash
-        :class: highlight
-
-        sudo apt install python3-colcon-common-extensions
-        colcon build --packages-select ariac
-
-- Source the workspace:
+Install Git
+^^^^^^^^^^^
 
     .. code-block:: bash
         :class: highlight
 
-        source install/setup.bash
+        sudo apt-get -y update
+        sudo apt-get -y install git
 
-    **Note:** You may want to add the following line to your :file:`~/.bashrc` file: :bash:`source ~/ariac_ws/install/setup.bash`
+Install Autoware
+^^^^^^^^^^^^^^^^
+
+- Clone autowarefoundation/autoware:
+
+    .. code-block:: bash
+        :class: highlight
+
+        cd ~/dev
+        git clone https://github.com/autowarefoundation/autoware.git -b galactic
+        cd autoware
+
+- Pull the dependencies:
+
+    .. code-block:: bash
+        :class: highlight
+
+        cd ~/dev/autoware
+        mkdir src
+        vcs import src < autoware.repos
+
+- Install dependent ROS packages:
+
+    .. code-block:: bash
+        :class: highlight
+
+        source /opt/ros/galactic/setup.bash
+        cd ~/dev/autoware
+        rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+
+- Build the workspace:
+
+    .. code-block:: bash
+        :class: highlight
+
+        cd ~/dev/autoware
+        colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
+
+    **Note:** `colcon build` builds all packages in the workspace. This can take a long time (approximately 20-30 min).
+
+    .. admonition:: Requirements
+        :class: attention
+
+        `~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to the :file:`src` folder, the workspace must be rebuilt with `colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release`.
+        
+
+
 
 Starting the ARIAC Simulator
 ----------------------------
