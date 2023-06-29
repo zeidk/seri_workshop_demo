@@ -112,13 +112,41 @@ Install Autoware
 
         :file:`~/dev/autoware` is a ROS 2 workspace. Each time a modification is made to any file in the :file:`src` folder, the workspace must be rebuilt with ``colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release``.
         
+- Test Autoware:
+
+    - Follow the instructions found `here <https://autowarefoundation.github.io/autoware.auto/AutowareAuto/installation.html#test-your-installation>`_ to test the planning simulation in Autoware.
 
 
-
-Starting the ARIAC Simulator
+Carla Autoware Bridge
 ----------------------------
 
-There are mainly two ways to start the ARIAC simulator.
+
+.. admonition:: Prerequisites
+  :class: attention
+
+    Autoware must be installed before installing the Carla Autoware Bridge.
+
+The following instructions install a bridge between Carla and Autoware. The bridge is used to send sensor data from Carla to Autoware and to send control commands from Autoware to Carla.
+The following instructions are taken from the `autoware_carla_branch <https://github.com/evshary/autoware_carla_launch/tree/galactic>`_.
+
+
+Clone and Build the Bridge
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+    .. code-block:: bash
+        :class: highlight
+
+        cd ~/dev
+        source autoware/install/setup.bash
+        git clone https://github.com/evshary/autoware_carla_launch.git -b galactic
+        cd autoware_carla_launch
+        make clean
+        source env.sh
+        make prepare
+        make build
+
+
+
 
 Default Configuration
 ~~~~~~~~~~~~~~~~~~~~~
