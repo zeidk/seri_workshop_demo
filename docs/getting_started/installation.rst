@@ -177,10 +177,20 @@ Carla Autoware Bridge
 
 - Test the bridge:
 
+    - Terminal 1: Run Carla
+
         .. code-block:: bash
             :class: no-copybutton
 
+            cd ~/autoware_carla/<carla folder>
             ./CarlaUE4.sh -quality-level=Epic -prefernvidia
+            
+            
+    - Terminal 2: Run the bridge
+
+        .. code-block:: bash
+            :class: no-copybutton
+
             cd ~/autoware_carla_launch
             source env.sh
             ros2 launch autoware_carla_launch autoware_carla.launch.xml
